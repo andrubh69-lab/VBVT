@@ -1,2 +1,0 @@
-# VBVT
-Proyecto VetBullCan

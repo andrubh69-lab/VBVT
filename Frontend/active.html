@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preload" href="styles.css" as="style">
+  <title>Activar Usuario</title>
+  <link rel="stylesheet" href="css/active.css" />
+</head>
+<body>
+  <div class="login-box">
+    <img src="img/Logotipo.png" alt="BVC logo" />
+    <input type="text" id="usuario" placeholder="Ingrese el usuario" />
+    <input type="email" id="correo" placeholder="Ingrese el correo" />
+    <button id="activarBtn">Activar</button>
+    <div id="mensaje" class="message"></div>
+  </div>
+
+  <script>
+    // Simulamos una lista de usuarios para verificar
+    const usuariosRegistrados = [
+      { usuario: "CristBasallo", correo: "crist@example.com" },
+      { usuario: "MilaMotta", correo: "Mila@example.com" },
+      { usuario: "HaruMiel", correo: "HM@example.com" }
+    ];
+
+    const btn = document.getElementById("activarBtn");
+    const mensajeDiv = document.getElementById("mensaje");
+
+    btn.addEventListener("click", () => {
+      const usuario = document.getElementById("usuario").value.trim();
+      const correo = document.getElementById("correo").value.trim().toLowerCase();
+
+      if (!usuario || !correo) {
+        mensajeDiv.textContent = "Por favor ingrese usuario y correo.";
+        mensajeDiv.className = "message error";
+        return;
+      }
+
+      const usuarioEncontrado = usuariosRegistrados.find(
+        u => u.usuario === usuario && u.correo === correo
+      );
+
+      if (usuarioEncontrado) {
+        mensajeDiv.textContent = "El usuario se encuentra activo satisfactoriamente.";
+        mensajeDiv.className = "message success";
+      } else {
+        mensajeDiv.textContent = "El usuario no existe.";
+        mensajeDiv.className = "message error";
+      }
+    });
+  </script>
+</body>
+</html>
